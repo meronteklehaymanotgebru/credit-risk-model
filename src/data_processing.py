@@ -154,7 +154,7 @@ def build_pipeline():
     preprocessor = ColumnTransformer([
         ("num", num_pipe, num_cols),
         ("cat", cat_pipe, cat_cols),
-    ])
+    ], remainder='passthrough')
 
     pipeline = Pipeline([
         ("aggregator", TransactionAggregator()),
@@ -173,6 +173,11 @@ def load_and_process_data(raw_path="data/raw/data.csv"):
     df = pd.read_csv(raw_path, parse_dates=["TransactionStartTime"])
     pipeline = build_pipeline()
     processed = pipeline.fit_transform(df)
+
+    # Rename remainder column back to 'CustomerId' for clean merging
+    if 'remainder__CustomerId' in processed.columns:
+        processed.rename(columns={'remainder__CustomerId': 'CustomerId'}, inplace=True)
+
     return processed
 
 

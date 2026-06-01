@@ -8,6 +8,7 @@ venv/
 # Data
 data/raw/*
 data/processed/*
+!data/raw/sample_data.csv
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
