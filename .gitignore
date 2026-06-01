@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+.ipynb_checkpoints/
+
+# Data
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# MLflow
+mlruns/
+
+# Docker
+*.dockerignore
+
+# Mac / Win
+.DS_Store
+Thumbs.db
